@@ -1,2 +1,2 @@
 # ProjectPython
-Objetivo de usar a maioria das ferramentas do python
+Projeto a fim de aplicar a maioria do conhecimentos em python
