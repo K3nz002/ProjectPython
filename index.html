@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python Project Interface</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f0f2f5;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            background-color: #1a73e8;
+            color: white;
+            padding: 20px 0;
+            margin-bottom: 30px;
+        }
+
+        header h1 {
+            text-align: center;
+            font-size: 2.5em;
+        }
+
+        .menu {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .menu button {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            background-color: #1a73e8;
+            color: white;
+            cursor: pointer;
+            font-size: 1em;
+            transition: background-color 0.3s;
+        }
+
+        .menu button:hover {
+            background-color: #1557b0;
+        }
+
+        .section {
+            background-color: white;
+            border-radius: 12px;
+            padding: 30px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            display: none;
+        }
+
+        .section.active {
+            display: block;
+        }
+
+        .section h2 {
+            color: #1a73e8;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #333;
+        }
+
+        .form-group select,
+        .form-group input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 1em;
+        }
+
+        .result {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #f8f9fa;
+            border-radius: 6px;
+            text-align: center;
+            font-size: 1.2em;
+            color: #333;
+        }
+
+        @media (max-width: 768px) {
+            .menu {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .menu button {
+                width: 100%;
+                max-width: 300px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Python Project Interface</h1>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="menu">
+            <button onclick="showSection('tabuada')">Tabuada do 7</button>
+            <button onclick="showSection('contador')">Contador</button>
+            <button onclick="showSection('horario')">Horário Atual</button>
+            <button onclick="showSection('cotacao')">Cotação de Moedas</button>
+            <button onclick="showSection('calculadora')">Calculadora</button>
+        </div>
+
+        <div id="tabuada" class="section">
+            <h2>Tabuada do 7</h2>
+            <div class="result" id="tabuadaResult"></div>
+        </div>
+
+        <div id="contador" class="section">
+            <h2>Contador de 0 a 100 de 4 em 4</h2>
+            <div class="result" id="contadorResult"></div>
+        </div>
+
+        <div id="horario" class="section">
+            <h2>Horário Atual</h2>
+            <div class="result" id="horarioResult"></div>
+        </div>
+
+        <div id="cotacao" class="section">
+            <h2>Cotação de Moedas</h2>
+            <div class="form-group">
+                <label>Selecione a Moeda:</label>
+                <select id="moedaSelect" onchange="showConversionOptions()">
+                    <option value="">Escolha uma moeda</option>
+                    <option value="USD">Dólar</option>
+                    <option value="EUR">Euro</option>
+                    <option value="BTC">Bitcoin</option>
+                </select>
+            </div>
+            <div class="form-group" id="operacaoDiv" style="display: none;">
+                <label>Tipo de Conversão:</label>
+                <select id="operacaoSelect" onchange="showValueInput()">
+                    <option value="">Escolha a operação</option>
+                    <option value="toReal">Para Real</option>
+                    <option value="fromReal">De Real</option>
+                </select>
+            </div>
+            <div class="form-group" id="valorDiv" style="display: none;">
+                <label id="valorLabel">Valor:</label>
+                <input type="number" id="valorInput" step="0.01">
+            </div>
+            <div class="result" id="cotacaoResult"></div>
+        </div>
+
+        <div id="calculadora" class="section">
+            <h2>Calculadora Simples</h2>
+            <div class="form-group">
+                <label>Operação:</label>
+                <select id="calcOperacao">
+                    <option value="1">Soma</option>
+                    <option value="2">Subtração</option>
+                    <option value="3">Multiplicação</option>
+                    <option value="4">Divisão</option>
+                    <option value="5">Potência</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Primeiro Valor:</label>
+                <input type="number" id="numero1" step="0.01">
+            </div>
+            <div class="form-group">
+                <label>Segundo Valor:</label>
+                <input type="number" id="numero2" step="0.01">
+            </div>
+            <button onclick="calcular()" style="padding: 10px 20px; background-color: #1a73e8; color: white; border: none; border-radius: 6px; cursor: pointer;">Calcular</button>
+            <div class="result" id="calculadoraResult"></div>
+        </div>
+    </div>
+
+    <script>
+        function showSection(sectionId) {
+            document.querySelectorAll('.section').forEach(section => {
+                section.classList.remove('active');
+            });
+            document.getElementById(sectionId).classList.add('active');
+
+            if (sectionId === 'tabuada') {
+                showTabuada();
+            } else if (sectionId === 'contador') {
+                showContador();
+            } else if (sectionId === 'horario') {
+                showHorario();
+                setInterval(showHorario, 1000);
+            }
+        }
+
+        function showTabuada() {
+            let result = '';
+            for (let i = 0; i <= 100; i++) {
+                result += `${i} x 7 = ${i * 7}<br>`;
+            }
+            document.getElementById('tabuadaResult').innerHTML = result;
+        }
+
+        function showContador() {
+            let result = '';
+            for (let i = 0; i <= 100; i += 4) {
+                result += i + '<br>';
+            }
+            document.getElementById('contadorResult').innerHTML = result;
+        }
+
+        function showHorario() {
+            const now = new Date();
+            const meses = ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'];
+            document.getElementById('horarioResult').innerHTML = 
+                `São ${now.getHours()}:${String(now.getMinutes()).padStart(2, '0')} do dia ${now.getDate()} de ${meses[now.getMonth()]} de ${now.getFullYear()}`;
+        }
+
+        function showConversionOptions() {
+            const moeda = document.getElementById('moedaSelect').value;
+            if (moeda) {
+                document.getElementById('operacaoDiv').style.display = 'block';
+                document.getElementById('operacaoSelect').value = '';
+                document.getElementById('valorDiv').style.display = 'none';
+                document.getElementById('cotacaoResult').innerHTML = '';
+            } else {
+                document.getElementById('operacaoDiv').style.display = 'none';
+                document.getElementById('valorDiv').style.display = 'none';
+            }
+        }
+
+        function showValueInput() {
+            const operacao = document.getElementById('operacaoSelect').value;
+            const moeda = document.getElementById('moedaSelect').value;
+            if (operacao) {
+                document.getElementById('valorDiv').style.display = 'block';
+                document.getElementById('valorLabel').innerHTML = 
+                    `Valor em ${operacao === 'toReal' ? moeda : 'Real'}:`;
+                document.getElementById('valorInput').value = '';
+                document.getElementById('cotacaoResult').innerHTML = '';
+            } else {
+                document.getElementById('valorDiv').style.display = 'none';
+            }
+        }
+
+        async function getCotacoes() {
+            try {
+                const response = await fetch('https://economia.awesomeapi.com.br/last/USD-BRL,EUR-BRL,BTC-BRL');
+                const data = await response.json();
+                return {
+                    USD: parseFloat(data.USDBRL.bid),
+                    EUR: parseFloat(data.EURBRL.bid),
+                    BTC: parseFloat(data.BTCBRL.bid)
+                };
+            } catch (error) {
+                console.error('Erro ao obter cotações:', error);
+                return null;
+            }
+        }
+
+        document.getElementById('valorInput').addEventListener('input', async function() {
+            const moeda = document.getElementById('moedaSelect').value;
+            const operacao = document.getElementById('operacaoSelect').value;
+            const valor = parseFloat(this.value);
+
+            if (!valor || isNaN(valor)) {
+                document.getElementById('cotacaoResult').innerHTML = '';
+                return;
+            }
+
+            const cotacoes = await getCotacoes();
+            if (!cotacoes) {
+                document.getElementById('cotacaoResult').innerHTML = 'Erro ao obter cotações';
+                return;
+            }
+
+            let resultado;
+            let simboloOrigem = '';
+            let simboloDestino = '';
+
+            if (operacao === 'toReal') {
+                resultado = valor * cotacoes[moeda];
+                simboloOrigem = moeda === 'BTC' ? '₿' : (moeda === 'USD' ? '$' : '€');
+                simboloDestino = 'R$';
+            } else {
+                resultado = valor / cotacoes[moeda];
+                simboloOrigem = 'R$';
+                simboloDestino = moeda === 'BTC' ? '₿' : (moeda === 'USD' ? '$' : '€');
+            }
+
+            document.getElementById('cotacaoResult').innerHTML = 
+                `${simboloOrigem}${valor.toFixed(2)} = ${simboloDestino}${resultado.toFixed(2)}`;
+        });
+
+        function calcular() {
+            const operacao = document.getElementById('calcOperacao').value;
+            const num1 = parseFloat(document.getElementById('numero1').value);
+            const num2 = parseFloat(document.getElementById('numero2').value);
+
+            if (isNaN(num1) || isNaN(num2)) {
+                document.getElementById('calculadoraResult').innerHTML = 'Por favor, insira números válidos';
+                return;
+            }
+
+            let resultado;
+            let operador;
+
+            switch (operacao) {
+                case '1':
+                    resultado = num1 + num2;
+                    operador = '+';
+                    break;
+                case '2':
+                    resultado = num1 - num2;
+                    operador = '-';
+                    break;
+                case '3':
+                    resultado = num1 * num2;
+                    operador = 'x';
+                    break;
+                case '4':
+                    if (num2 === 0) {
+                        document.getElementById('calculadoraResult').innerHTML = 'Não é possível dividir por zero';
+                        return;
+                    }
+                    resultado = num1 / num2;
+                    operador = ':';
+                    break;
+                case '5':
+                    resultado = Math.pow(num1, num2);
+                    operador = '^';
+                    break;
+            }
+
+            document.getElementById('calculadoraResult').innerHTML = 
+                `${num1} ${operador} ${num2} = ${resultado.toFixed(2)}`;
+        }
+    </script>
+</body>
+</html>

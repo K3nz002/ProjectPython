@@ -17,7 +17,7 @@ def horario_atual():
     mes_atual = datetime.now().month
     ano_atual = datetime.now().year
 
-    # conversão do mês para extenso
+    # conversão do mês em extenso
     match mes_atual:
         case 1:
             mes_atual = 'Janeiro'
@@ -57,33 +57,42 @@ def cotacao_moedas():
     print('Escolha uma moeda:\n1. Dólar\n2. Euro\n3. Bitcoin')
     moeda = int(input())
     match moeda:
+
         case 1:
             print('Escolha a operação que gostaria de fazer\n1. USD -> Real\n2. Real -> USD')
             operacao = int(input())
             match operacao:
+
                 case 1:
                     valor_dolar = float(input('Digite o valor em dólar: '))
                     print(f'O valor de dólar para real é R${valor_dolar * cotacao_dolar: .2f}')
+
                 case 2:
                     valor_real = float(input('Digite o valor em real: '))
                     print(f'O valor de real para dólar é ${valor_real / cotacao_dolar: .2f}')
+
         case 2:
             print('Escolha a operação que gostaria de fazer\n1. EUR -> Real\n2. Real -> EUR')
             operacao = int(input())
             match operacao:
+
                 case 1:
                     valor_euro = float(input('Digite o valor em euro: '))
                     print(f'O valor de euro para real é R${valor_euro * cotacao_euro: .2f}')
+
                 case 2:
                     valor_real = float(input('Digite o valor em real: '))
                     print(f'O valor de real para euro é €{valor_real / cotacao_euro: .2f}')
+
         case 3:
             print('Escolha a operação que gostaria de fazer\n1. BTC -> Real\n2. Real -> BTC')
             operacao = int(input())
             match operacao:
+
                 case 1:
                     valor_btc = float(input('Digite o valor em bitcoin: '))
-                    print(f'O valor de dólar para real é R${valor_btc * cotacao_btc: .2f}')
+                    print(f'O valor de bitcoin para real é R${valor_btc * cotacao_btc: .2f}')
+
                 case 2:
                     valor_real = float(input('Digite o valor em real: '))
                     print(f'O valor de real para bitcoin é ₿{valor_real / btc: .2f}')
@@ -95,14 +104,19 @@ def calculadora_simples():
     numero2 = float(input('Digite o segundo valor:'))
 
     match operacao:
+
         case 1:
             print(f'O resultado da soma é:\n{numero1} + {numero2} = {numero1 + numero2: .2f}')
+
         case 2:
             print(f'O resultado da subtração é:\n{numero1} - {numero2} = {numero1 - numero2: .2f}')
+
         case 3:
             print(f'O resultado da multiplicação é:\n{numero1} x {numero2} = {numero1 * numero2: .2f}')
+
         case 4:
             print(f'O resultado da divisão é:\n{numero1} : {numero2} = {numero1 / numero2: .2f}')
+
         case 5:
             print(f'O resultado da potência é:\n{numero1} ^ {numero2} = {numero1 ** numero2: .2f}')
 
@@ -112,13 +126,18 @@ print('1. Tabuada do 7\n2. Contador de 0 a 100 de 4 em 4\n3. Hora atual\n4. Cota
 opcao = int(input('Escolha uma opção: '))
 
 match opcao:
+
     case 1:
         tabuada_7()
+
     case 2:
         contador_ate_100()
+
     case 3:
         horario_atual()
+
     case 4:
         cotacao_moedas()
+
     case 5:
         calculadora_simples()
