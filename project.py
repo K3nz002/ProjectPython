@@ -7,7 +7,7 @@ def tabuada_7():
 
 def contador_ate_100():
     for contador in range(0, 101, 4):
-        print(contador)
+        print(f'{contador}', end='; ')
     
 def horario_atual():
     # horas, minutos, dia, mes e ano atual
@@ -18,33 +18,12 @@ def horario_atual():
     ano_atual = datetime.now().year
 
     # conversão do mês em extenso
-    match mes_atual:
-        case 1:
-            mes_atual = 'Janeiro'
-        case 2:
-            mes_atual = 'Fevereiro'
-        case 3:
-            mes_atual = 'Março'
-        case 4:
-            mes_atual = 'Abril'
-        case 5:
-            mes_atual = 'Maio'
-        case 6:
-            mes_atual = 'Junho'
-        case 7:
-            mes_atual = 'Julho'
-        case 8:
-            mes_atual = 'Agosto'
-        case 9:
-            mes_atual = 'Setembro'
-        case 10:
-            mes_atual = 'Outubro'
-        case 11:
-            mes_atual = 'Novembro'
-        case 12:
-            mes_atual = 'Dezembro'
+    meses_extenso = ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho',
+     'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro']
 
-    print(f'São {hora_atual}:{minuto_atual} do dia {dia_atual} de {mes_atual} de {ano_atual}')
+    mes_atual = meses_extenso[mes_atual - 1]
+
+    print(f'São {hora_atual} : {minuto_atual} do dia {dia_atual} de {mes_atual} de {ano_atual}')
     
 def cotacao_moedas():
     # API das cotações de moedas estrangeiras e bitcoin
@@ -91,11 +70,11 @@ def cotacao_moedas():
 
                 case 1:
                     valor_btc = float(input('Digite o valor em bitcoin: '))
-                    print(f'O valor de bitcoin para real é R${valor_btc * cotacao_btc: .2f}')
+                    print(f'O valor de bitcoin para real é R${valor_btc * cotacao_btc}')
 
                 case 2:
                     valor_real = float(input('Digite o valor em real: '))
-                    print(f'O valor de real para bitcoin é ₿{valor_real / btc: .2f}')
+                    print(f'O valor de real para bitcoin é ₿{valor_real / btc}')
 
 def calculadora_simples():
     print('Escolha uma operação:\n1. Soma\n2. Subtração\n3. Multiplicação\n4. Divisão\n5. Potência')
