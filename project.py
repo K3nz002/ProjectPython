@@ -43,12 +43,18 @@ def cotacao_moedas():
             match operacao:
 
                 case 1:
-                    valor_dolar = float(input('Digite o valor em dólar: '))
-                    print(f'O valor de dólar para real é R${valor_dolar * cotacao_dolar: .2f}')
+                    while True:
+                        valor_dolar = float(input('Digite o valor em dólar: '))
+                        print(f'O valor de dólar para real é R${valor_dolar * cotacao_dolar: .2f}')
+                        if valor_dolar == 0:
+                            break
 
                 case 2:
-                    valor_real = float(input('Digite o valor em real: '))
-                    print(f'O valor de real para dólar é ${valor_real / cotacao_dolar: .2f}')
+                    while True:
+                        valor_real = float(input('Digite o valor em real: '))
+                        print(f'O valor de real para dólar é ${valor_real / cotacao_dolar: .2f}')
+                        if valor_real == 0:
+                            break
 
         case 2:
             print('Escolha a operação que gostaria de fazer\n1. EUR -> Real\n2. Real -> EUR')
@@ -56,12 +62,18 @@ def cotacao_moedas():
             match operacao:
 
                 case 1:
-                    valor_euro = float(input('Digite o valor em euro: '))
-                    print(f'O valor de euro para real é R${valor_euro * cotacao_euro: .2f}')
+                    while True:
+                        valor_euro = float(input('Digite o valor em euro: '))
+                        print(f'O valor de euro para real é R${valor_euro * cotacao_euro: .2f}')
+                        if valor_euro == 0:
+                            break
 
                 case 2:
-                    valor_real = float(input('Digite o valor em real: '))
-                    print(f'O valor de real para euro é €{valor_real / cotacao_euro: .2f}')
+                    while True:
+                        valor_real = float(input('Digite o valor em real: '))
+                        print(f'O valor de real para euro é €{valor_real / cotacao_euro:.2f}')
+                        if valor_real == 0:
+                            break
 
         case 3:
             print('Escolha a operação que gostaria de fazer\n1. BTC -> Real\n2. Real -> BTC')
@@ -69,12 +81,18 @@ def cotacao_moedas():
             match operacao:
 
                 case 1:
-                    valor_btc = float(input('Digite o valor em bitcoin: '))
-                    print(f'O valor de bitcoin para real é R${valor_btc * cotacao_btc}')
+                    while True:
+                        valor_btc = float(input('Digite o valor em bitcoin: '))
+                        print(f'O valor de bitcoin para real é R${valor_btc * cotacao_btc}')
+                        if valor_btc == 0:
+                            break
 
                 case 2:
-                    valor_real = float(input('Digite o valor em real: '))
-                    print(f'O valor de real para bitcoin é ₿{valor_real / btc}')
+                    while True:
+                        valor_real = float(input('Digite o valor em real: '))
+                        print(f'O valor de real para bitcoin é ₿{valor_real / cotacao_btc}')
+                        if valor_real == 0:
+                            break
 
 def calculadora_simples():
     print('Escolha uma operação:\n1. Soma\n2. Subtração\n3. Multiplicação\n4. Divisão\n5. Potência')
@@ -99,9 +117,26 @@ def calculadora_simples():
         case 5:
             print(f'O resultado da potência é:\n{numero1} ^ {numero2} = {numero1 ** numero2: .2f}')
 
+def temperatura():
+    print('Escolha a unidade de temperatura que deseja converter:\n1. Celsius\n2. Fahrenheit\n3. Kelvin')
+    unidade = int(input())
+    temperatura = float(input('Digite a temperatura: '))
+
+    match unidade:
+        case 1: # celsius
+            print(f'A temperatura de {temperatura}°C em Fahrenheit é {(temperatura * 1.8) + 32: .2f}°F')
+            print(f'A temperatura de {temperatura}°C em Kelvin é {temperatura + 273.15: .2f}K')
+
+        case 2: # fahrenheit
+            print(f'A temperatura de {temperatura}°F em Celsius é {(temperatura - 32) / 1.8: .2f}°C')
+            print(f'A temperatura de {temperatura}°F em Kelvin é {(temperatura - 32) * 5 / 9 + 273.15: .2f}K')
+
+        case 3: # kelvin
+            print(f'A temperatura de {temperatura}K em Celsius é {temperatura - 273.15: .2f}°C')
+            print(f'A temperatura de {temperatura}K em Fahrenheit é {(temperatura - 273.15) * 1.8 + 32: .2f}°F')
 
 # Programa principal
-print('1. Tabuada do 7\n2. Contador de 0 a 100 de 4 em 4\n3. Hora atual\n4. Cotação de moedas para real\n5. Calculadora simples')
+print('1. Tabuada do 7\n2. Contador de 0 a 100 de 4 em 4\n3. Hora atual\n4. Cotação de moedas para real\n5. Calculadora simples\n6. Conversor de temperatura')
 opcao = int(input('Escolha uma opção: '))
 
 match opcao:
@@ -120,3 +155,6 @@ match opcao:
 
     case 5:
         calculadora_simples()
+
+    case 6:
+        temperatura()
